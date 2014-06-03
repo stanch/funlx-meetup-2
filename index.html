@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Functional User Interfaces</title>
+
+    <meta name="description" content="Codebits2014 Slides">
+    <meta name="author" content="Nick">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- Typekit -->
+    <script type="text/javascript" src="//use.typekit.net/gsg2lcs.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>Functional User Interfaces</h1>
+          <h4>
+            Nick <a href="https://twitter.com/stanchme">@stanchme</a><br/>
+            <a href="http://github.com/stanch">http://github.com/stanch</a>
+          </h4>
+          <h5>(please change slides with &lt;space&gt;)</h5>
+        </section>
+
+        <section data-markdown>
+          # Functional, huh?
+        </section>
+
+        <section>
+          <section>
+            <h2>Composability</h2>
+            <img src="pipes.png" alt="pipes"/>
+          </section>
+          <section>
+            <h2>Abstraction</h2>
+            <img src="legos.jpg" alt="legos"/>
+          </section>
+        </section>
+
+        <section data-markdown>
+          # User Interfaces
+        </section>
+
+        <section data-markdown>
+          ## In a nutshell
+
+          * Displaying stuff
+          * Reacting to user input
+        </section>
+
+        <section>
+          <h1>The Awkward Layouts</h1>
+        </section>
+
+        <section>
+          <section data-markdown>
+            ## What we need
+
+            * Reusable
+            * Composable
+            * Flexible
+          </section>
+          <section data-markdown>
+            ## Android XML
+
+            ![xml](xml.png)
+
+            * Awkward modularity
+          </section>
+          <section data-markdown>
+            ## Javascript {{{}}}-s
+
+            ![{{}}]({{}}.png)
+
+            * String-based? Duh...
+          </section>
+        </section>
+
+        <section data-markdown>
+          # The Composable Layouts
+        </section>
+
+        <section>
+          <section data-markdown>
+            ## ScalaTags [*](https://github.com/lihaoyi/scalatags)
+
+            * Just Scala code
+            * Use values and modules
+          </section>
+          <section data-markdown>
+            ## Demo
+            [![demo](scalatags.png)](http://www.scala-js-fiddle.com/gist/e30f7c897b4ca822ca37)
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            ## Hiccup [*](https://github.com/weavejester/hiccup)
+
+            ### same idea in Clojure...
+
+            ```clojure
+            (html [:span {:class "foo"} "bar"])
+            ```
+          </section>
+          <section data-markdown>
+            ## Dommy [*](https://github.com/Prismatic/dommy)
+
+            ### and again...
+
+            ```clojure
+            (node
+              [:div#id.class1
+                (for [r (range 2)]
+                  [:span.text (str "word" r)])])
+            ```
+          </section>
+          <section data-markdown>
+            ## Teacup [*](https://github.com/goodeggs/teacup)
+
+            ### and in CoffeeScript...
+
+            ```coffeescript
+            output = render ->
+              ul ->
+                li 'Bergamot'
+                li 'Chamomile'
+            ```
+          </section>
+        </section>
+
+        <section>
+          <h1>The<br>Flying<br>Spaghetti<br>Code<br>Monster</h1>
+        </section>
+
+        <section>
+          <section data-markdown>
+            ## Wikipedia on Spaghetti
+
+            ![spag](spaghetti.png)
+            ![rav](ravioli.png)
+          </section>
+          <section data-markdown>
+            ## UI is the new black
+
+            ![neri](neri.jpg)
+          </section>
+          <section data-markdown>
+            ## Adobe on UI [*](http://stlab.adobe.com/wiki/images/0/0c/Possible_future.pdf)
+
+            * 1/3 code is event handling
+            * 1/2 bugs are in that code
+          </section>
+        </section>
+
+        <section data-markdown>
+          # Dataflow programming
+        </section>
+
+        <section>
+          <section data-markdown>
+            ## Establishing connections
+
+            ![moog](moog.jpg)
+          </section>
+          <section data-markdown>
+            ## Remember MS Excel?
+
+            ![excel](excel.png)
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            ## Signals
+
+            * Mouse is a signal
+            * Textbox is a slot
+            * We need the cable!
+          </section>
+          <section data-markdown>
+            ## Elm [*](http://elm-lang.org/)
+
+            * Signal-based language
+            * Compiles to HTML+CSS+JS
+          </section>
+          <section data-markdown>
+            ## Demo
+
+            [![elm](elm.png)](http://elm-lang.org/edit/examples/Reactive/Position.elm)
+          </section>
+          <section data-markdown>
+            ## A complete example
+
+            [![elm](elm2.png)](http://elm-lang.org/edit/examples/Intermediate/Physics.elm)
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            ## Event Streams
+
+            * Keypress is an event
+            * Transform it
+            * Connect to a textbox
+          </section>
+          <section data-markdown>
+            ## bacon.js
+
+            * JavaScript library
+            * Turns DOM events into transformable streams
+          </section>
+          <section data-markdown>
+            ## Demo
+
+            [![bacon](bacon.png)](http://baconjs.github.io/)
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            ## Observables
+            ### same idea
+
+            * Reactive Extensions [*](https://rx.codeplex.com/)
+            * RxJava [*](https://github.com/Netflix/RxJava)
+          </section>
+        </section>
+
+        <section data-markdown>
+          # Meanwhile, in our phones
+        </section>
+
+        <section data-markdown>
+          ## Macroid [*](https://github.com/macroid/macroid)
+
+          > Experimental modular functional UI language for Android, written in Scala.
+        </section>
+
+        <section>
+          <section data-markdown>
+            ## Bricks
+
+            ```scala
+            w[Button]
+            ```
+          </section>
+          <section data-markdown>
+            ## Bricks
+
+            ```scala
+            l[LinearLayout](
+              w[Button],
+              w[TextView]
+            )
+            ```
+          </section>
+          <section data-markdown>
+            ## Bricks
+
+            ```scala
+            val brick1 = w[Button]
+            val brick2 = w[TextView]
+
+            l[LinearLayout](
+              brick1, brick2
+            )
+            ```
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            ## Tweaks
+
+            ```scala
+            w[TextView] <~ text("Hello")
+            ```
+          </section>
+          <section data-markdown>
+            ## Tweaks
+            
+            ```scala
+            def largeText(str: String) =
+              text(str) +
+              TextSize.large +
+              padding(left = 8 dp)
+
+            myTextView <~ largeText("Hello")
+            ```
+          </section>
+        </section>
+
+        <section data-markdown class="smaller-code">
+          ## A complete layout
+
+          ```scala
+          var greeting = slot[TextView]
+ 
+          l[LinearLayout](
+            w[Button] <~
+              text("Greet me!") <~
+              On.click {
+                greeting <~ show
+              },
+              
+            w[TextView] <~
+              text("Hello there") <~
+              wire(greeting) <~ hide 
+          )
+          ```
+        </section>
+
+        <section>
+          <section data-markdown>
+            ## Snails
+
+            ```scala
+            myTextView <~~ fadeIn(400)
+            ```
+          </section>
+          <section data-markdown>
+            ## Snails
+
+            ```scala
+            myTextView <~~
+              fadeIn(400) <~
+              text("Faded!")
+            ```
+          </section>
+          <section data-markdown>
+            ## Snails
+            
+            ```scala
+            val blink =
+              fadeIn(400) ++
+              delay(2000) ++
+              fadeOut(400)
+
+            myTextView <~~ blink
+            ```
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            ## UI actions
+
+            ```scala
+            val action =
+              myTextView <~ text("Foo") <~ show
+            ```
+          </section>
+          <section data-markdown>
+            ## UI actions
+
+            ```scala
+            val action1 =
+              myTextView <~ text("Foo") <~ show
+
+            val action2 =
+              myProgressBar <~ hide
+
+            runUi(action1 ~ action2)
+            ```
+          </section>
+          <section data-markdown class="smaller-code">
+            ## UI actions
+
+            ```scala
+            runUi {
+              (myProgressBar <~~ fadeOut(400)) ~~
+              (myTextView <~~ blink) ~~
+              (myOtherTextView <~ text("’SUP?"))
+            }
+            ```
+          </section>
+        </section>
+
+        <section data-markdown class="smaller-code">
+          ## Tweaks & Signals
+
+          ```scala
+          // create a reactive variable
+          val caption = rx.Var("Olá")
+
+          // set text to “Olá”
+          myTextView <~ caption.map(text)
+
+          // text automatically updates to “Adeus”
+          caption.update("Adeus")
+          ```
+        </section>
+
+
+        <section data-markdown>
+          # Advanced Ideas
+        </section>
+
+        <section>
+          <section data-markdown>
+            ## Drawing a figure
+
+            * Wait till mouse is down
+            * Draw while it moves
+            * Finish once mouse is up
+          </section>
+          <section data-markdown class="smaller-code">
+            ## Event Stream Workflows [*](http://infoscience.epfl.ch/record/176887/files/DeprecatingObservers2012.pdf)
+
+            ```scala
+            Reactor.loop { self ⇒
+              // step 1
+              val path = new Path((self await mouseDown).position)
+              // step 2
+              self.loopUntil(mouseUp) {
+                val m = self awaitNext mouseMove
+                path.lineTo(m.position)
+                draw(path)
+              }
+              // step 3
+              path.close()
+              draw(path)
+            }
+            ```
+          </section>
+          <section data-markdown>
+            ## Demo
+
+            [![flow](flow.png)](http://www.scala-js-fiddle.com/gist/9759723/ScalaAsyncPaintbrush.scala)
+          </section>
+        </section>
+
+        <section>
+          <div data-markdown>
+            ## Further Reading
+
+            * See [*](#)-s in the slides
+            * [The “Deprecating Observers” paper (must read!)](http://infoscience.epfl.ch/record/176887/files/DeprecatingObservers2012.pdf)
+            * [A comprehensive overview of Haskell GUI libraries](http://www.accursoft.com/Haskell-GUI/Graphical%20User%20Interfaces%20in%20Haskell.pdf)
+          </div>
+          <div style="margin-top: 2em" data-markdown>
+            This presentation: http://stanch.github.io/funlx-meetup-2
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        backgroundTransition: 'slide',
+        transition: 'linear',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,24 @@
+Functional User Interfaces
+
+This talk introduces various functional programming
+techniques that heighten your expressive power in the
+face of the eternal battle with spaghetti UI code.
+
+I. Introduction [5]
+  * The XML & Template Hell
+  * The Flying Spaghetti Code Monster
+  
+II. Composable Layouts [10]
+  * Macroid
+  * ScalaTags (demo)
+  
+III. Signals & Event Streams [10]
+  * Elm (demo)
+  * bacon.js (demo)
+
+IV. Tweaks & Snails [10]
+  * Macroid
+  
+V. Flows [10]
+  * Scala.React
+  * ScalaJs + scala-async (demo)
